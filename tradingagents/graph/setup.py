@@ -66,9 +66,10 @@ class GraphSetup:
             
             # Update UI status for all analysts as in_progress
             if ui_available:
+                ticker = state.get("company_of_interest", "") or state.get("ticker", "")
                 for analyst_type in selected_analysts:
                     analyst_name = f"{analyst_type.capitalize()} Analyst"
-                    app_state.update_agent_status(analyst_name, "in_progress")
+                    app_state.update_agent_status(analyst_name, "in_progress", symbol=ticker)
             
             def execute_single_analyst(analyst_info):
                 """Execute a single analyst in a separate thread"""
@@ -135,19 +136,21 @@ class GraphSetup:
                     # Update UI status to completed
                     if ui_available:
                         analyst_name = f"{analyst_type.capitalize()} Analyst"
-                        app_state.update_agent_status(analyst_name, "completed")
-                    
+                        ticker = analyst_state.get("company_of_interest", "") or analyst_state.get("ticker", "")
+                        app_state.update_agent_status(analyst_name, "completed", symbol=ticker)
+
                     return analyst_type, final_state
-                    
+
                 except Exception as e:
                     print(f"[PARALLEL] Error in {analyst_type} analyst: {e}")
                     import traceback
                     traceback.print_exc()
-                    
+
                     # Update UI status to error (completed with issues)
                     if ui_available:
                         analyst_name = f"{analyst_type.capitalize()} Analyst"
-                        app_state.update_agent_status(analyst_name, "completed")
+                        ticker = analyst_state.get("company_of_interest", "") or analyst_state.get("ticker", "")
+                        app_state.update_agent_status(analyst_name, "completed", symbol=ticker)
                     
                     return analyst_type, analyst_state
             
@@ -199,11 +202,12 @@ class GraphSetup:
                         
                         # Update report in UI state as well
                         if ui_available:
-                            ticker = state.get("ticker", "")
+                            ticker = state.get("company_of_interest", "") or state.get("ticker", "")
                             if ticker:
                                 ui_state = app_state.get_state(ticker)
                                 if ui_state:
                                     ui_state["current_reports"][report_field] = final_message.content
+                                    print(f"[PARALLEL] Updated UI state for {ticker}: {report_field}")
             
             print(f"[PARALLEL] Parallel analyst execution completed")
             return final_state
