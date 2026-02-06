@@ -133,7 +133,7 @@ def register_trading_callbacks(app):
 
     @app.callback(
         Output("chart-store", "data", allow_duplicate=True),
-        [Input({"type": "order-symbol-link", "symbol": ALL}, "n_clicks")],
+        [Input({"type": "order-symbol-link", "symbol": ALL, "index": ALL}, "n_clicks")],
         [State("chart-store", "data")],
         prevent_initial_call=True
     )

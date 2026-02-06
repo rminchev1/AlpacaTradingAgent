@@ -178,7 +178,7 @@ def render_orders_table(page=1, page_size=7):
                     html.Div([
                         html.A(
                             html.Strong(order["Asset"], className="symbol-text"),
-                            id={"type": "order-symbol-link", "symbol": order["Asset"]},
+                            id={"type": "order-symbol-link", "symbol": order["Asset"], "index": idx},
                             href="#",
                             className="symbol-link",
                             title=f"Click to view {order['Asset']} chart"
