@@ -155,8 +155,7 @@ def create_main_layout():
                     ], className="mb-2 text-muted"),
                     html.Div(
                         create_ticker_progress_panel(),
-                        className="agent-progress-compact",
-                        style={"maxHeight": "200px", "overflowY": "auto"}
+                        className="agent-progress-compact"
                     )
                 ]),
             ], className="p-3")
