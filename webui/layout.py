@@ -275,20 +275,18 @@ def create_main_layout():
         # Account Summary Bar
         account_bar,
 
+        # Market Scanner & Watchlist (top for quick access)
+        scanner_section,
+        watchlist_section,
+
         # Main Trading Area (Chart + Controls)
         main_trading_row,
 
         # Positions & Orders
         positions_orders_section,
 
-        # Watchlist
-        watchlist_section,
-
         # Agent Reports
         reports_section,
-
-        # Market Scanner
-        scanner_section,
 
         # Hidden components
         hidden_components,
