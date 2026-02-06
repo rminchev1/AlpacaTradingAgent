@@ -16,6 +16,7 @@ COLLAPSIBLE_PANELS = [
     "status-panel",
     "decision-panel",
     "reports-panel",
+    "positions-orders-panel",  # New panel for pro trader layout
 ]
 
 
@@ -25,6 +26,18 @@ def register_collapse_callbacks(app):
     # Generate callbacks for each panel
     for panel_id in COLLAPSIBLE_PANELS:
         _create_toggle_callback(app, panel_id)
+
+    # Settings toggle button callback (separate from panel collapse)
+    @app.callback(
+        Output("settings-collapse", "is_open"),
+        Input("toggle-settings-btn", "n_clicks"),
+        State("settings-collapse", "is_open"),
+        prevent_initial_call=True
+    )
+    def toggle_settings(n_clicks, is_open):
+        if n_clicks is None:
+            raise PreventUpdate
+        return not is_open
 
 
 def _create_toggle_callback(app, panel_id):

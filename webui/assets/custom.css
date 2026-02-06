@@ -1638,14 +1638,253 @@ body {
     .ticker-progress-item {
         padding: 10px 12px;
     }
-    
+
     .ticker-symbol {
         font-size: 1em;
     }
-    
+
     .agent-badge {
         font-size: 0.6em;
         padding: 1px 4px;
         min-width: 22px;
     }
+}
+
+/* ================================
+   Pro Trader Layout Styles
+   ================================ */
+
+.pro-trader-layout {
+    min-height: 100vh;
+}
+
+/* Compact Account Bar */
+.compact-account-bar {
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 12px 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.account-bar-container {
+    margin-bottom: 1rem;
+}
+
+/* Main Trading Row */
+.main-trading-row {
+    min-height: 600px;
+}
+
+/* Chart Card */
+.chart-card {
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+    border: 1px solid #334155;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.chart-section {
+    height: 100%;
+}
+
+/* Trading Panel Card */
+.trading-panel-card {
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+    border: 1px solid #334155;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.trading-panel-section {
+    height: 100%;
+}
+
+/* Trading Control Panel */
+.trading-control-panel {
+    padding: 0;
+}
+
+.ticker-input-field {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Settings Card */
+.settings-card {
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid #334155;
+    margin-top: 1rem;
+}
+
+/* Signal Card */
+.signal-card {
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 15px;
+    min-height: 120px;
+}
+
+.signal-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.signal-display-content {
+    width: 100%;
+}
+
+.signal-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.signal-text {
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
+
+/* Compact Decision Panel */
+.compact-decision-panel {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.decision-details-container {
+    margin-top: 1rem;
+}
+
+.decision-details-scroll {
+    max-height: 150px;
+    overflow-y: auto;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.compact-markdown {
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+/* Agent Progress Compact */
+.agent-progress-compact {
+    background: rgba(15, 23, 42, 0.3);
+    border: 1px solid rgba(51, 65, 85, 0.5);
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.agent-progress-compact .ticker-progress-item {
+    padding: 8px 10px;
+}
+
+.agent-progress-compact .ticker-symbol {
+    font-size: 0.95em;
+}
+
+/* Positions & Orders Section */
+.positions-orders-section .enhanced-table-container {
+    margin-bottom: 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Responsive Pro Trader Layout */
+@media (max-width: 991px) {
+    .main-trading-row {
+        min-height: auto;
+    }
+
+    .chart-section,
+    .trading-panel-section {
+        height: auto;
+    }
+
+    .compact-account-bar {
+        padding: 10px 15px;
+    }
+
+    .compact-account-bar .row {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .compact-account-bar {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+
+    .signal-text {
+        font-size: 1.5rem;
+    }
+
+    .signal-icon-wrapper {
+        width: 45px;
+        height: 45px;
+    }
+
+    .decision-details-scroll {
+        max-height: 120px;
+    }
+}
+
+/* Button Styles for Trading Control */
+#control-btn {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+}
+
+#control-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+#toggle-settings-btn {
+    transition: all 0.2s ease;
+}
+
+#toggle-settings-btn:hover {
+    background-color: rgba(148, 163, 184, 0.1);
+}
+
+/* Scrollbar for compact sections */
+.compact-decision-panel::-webkit-scrollbar,
+.agent-progress-compact::-webkit-scrollbar,
+.decision-details-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.compact-decision-panel::-webkit-scrollbar-track,
+.agent-progress-compact::-webkit-scrollbar-track,
+.decision-details-scroll::-webkit-scrollbar-track {
+    background: #1E293B;
+    border-radius: 3px;
+}
+
+.compact-decision-panel::-webkit-scrollbar-thumb,
+.agent-progress-compact::-webkit-scrollbar-thumb,
+.decision-details-scroll::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 3px;
+}
+
+.compact-decision-panel::-webkit-scrollbar-thumb:hover,
+.agent-progress-compact::-webkit-scrollbar-thumb:hover,
+.decision-details-scroll::-webkit-scrollbar-thumb:hover {
+    background: #64748B;
 }

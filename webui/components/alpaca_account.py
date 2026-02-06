@@ -336,8 +336,126 @@ def get_recent_orders(page=1, page_size=7, return_total=False):
             return [], 0
         return []
 
+def render_compact_account_bar():
+    """Render a compact horizontal account summary bar for the top of the page."""
+    try:
+        account_info = AlpacaUtils.get_account_info()
+
+        buying_power = account_info["buying_power"]
+        cash = account_info["cash"]
+        daily_change_dollars = account_info["daily_change_dollars"]
+        daily_change_percent = account_info["daily_change_percent"]
+
+        # Determine styling for daily change
+        if daily_change_dollars >= 0:
+            change_color = "text-success"
+            change_icon = "fa-arrow-up"
+            change_sign = "+"
+        else:
+            change_color = "text-danger"
+            change_icon = "fa-arrow-down"
+            change_sign = ""
+
+        return html.Div([
+            dbc.Row([
+                # Buying Power
+                dbc.Col([
+                    html.Div([
+                        html.I(className="fas fa-wallet me-2 text-primary"),
+                        html.Span("Buying Power: ", className="text-muted"),
+                        html.Span(f"${buying_power:,.2f}", className="fw-bold text-white")
+                    ], className="d-flex align-items-center")
+                ], width="auto"),
+                # Divider
+                dbc.Col([
+                    html.Span("|", className="text-muted mx-2")
+                ], width="auto", className="px-0"),
+                # Cash
+                dbc.Col([
+                    html.Div([
+                        html.I(className="fas fa-dollar-sign me-2 text-info"),
+                        html.Span("Cash: ", className="text-muted"),
+                        html.Span(f"${cash:,.2f}", className="fw-bold text-white")
+                    ], className="d-flex align-items-center")
+                ], width="auto"),
+                # Divider
+                dbc.Col([
+                    html.Span("|", className="text-muted mx-2")
+                ], width="auto", className="px-0"),
+                # Daily Change
+                dbc.Col([
+                    html.Div([
+                        html.I(className=f"fas {change_icon} me-2 {change_color}"),
+                        html.Span("Today: ", className="text-muted"),
+                        html.Span(
+                            f"{change_sign}${abs(daily_change_dollars):,.2f} ({change_sign}{abs(daily_change_percent):.2f}%)",
+                            className=f"fw-bold {change_color}"
+                        )
+                    ], className="d-flex align-items-center")
+                ], width="auto"),
+                # Refresh button on right
+                dbc.Col([
+                    html.Button([
+                        html.I(className="fas fa-sync-alt")
+                    ],
+                    id="refresh-alpaca-btn",
+                    className="btn btn-sm btn-outline-secondary",
+                    title="Refresh account data"
+                    )
+                ], width="auto", className="ms-auto")
+            ], className="align-items-center g-0", justify="start")
+        ], className="compact-account-bar", id="compact-account-bar")
+
+    except Exception as e:
+        return html.Div([
+            html.I(className="fas fa-exclamation-triangle me-2 text-warning"),
+            html.Span("Unable to load account data", className="text-muted"),
+            html.Button([
+                html.I(className="fas fa-sync-alt")
+            ],
+            id="refresh-alpaca-btn",
+            className="btn btn-sm btn-outline-secondary ms-3",
+            title="Refresh account data"
+            )
+        ], className="compact-account-bar d-flex align-items-center", id="compact-account-bar")
+
+
+def render_positions_orders_section():
+    """Render positions and orders side by side in a compact layout."""
+    return html.Div([
+        dbc.Row([
+            # Positions column
+            dbc.Col([
+                html.Div([
+                    html.H6([
+                        html.I(className="fas fa-briefcase me-2"),
+                        "Open Positions"
+                    ], className="mb-2 d-flex align-items-center"),
+                    html.Div(id="positions-table-container", children=render_positions_table())
+                ])
+            ], lg=6, className="mb-3 mb-lg-0"),
+            # Orders column
+            dbc.Col([
+                html.Div([
+                    html.H6([
+                        html.I(className="fas fa-history me-2"),
+                        "Recent Orders"
+                    ], className="mb-2 d-flex align-items-center"),
+                    html.Div(id="orders-table-container", children=render_orders_table())
+                ])
+            ], lg=6)
+        ]),
+        # Hidden div for liquidation confirmations
+        dcc.ConfirmDialog(
+            id='liquidate-confirm',
+            message='',
+        ),
+        html.Div(id="liquidation-status", className="mt-2")
+    ])
+
+
 def render_alpaca_account_section():
-    """Render the complete Alpaca account section"""
+    """Render the complete Alpaca account section (legacy - for backward compatibility)"""
     return html.Div([
         html.H4([
             html.I(className="fas fa-chart-line me-2"),
