@@ -832,11 +832,10 @@ def register_report_callbacks(app):
     )
     def switch_tab(*args):
         """Switch between tabs based on navigation clicks"""
-        ctx = dash.callback_context
-        if not ctx.triggered:
+        if not callback_context.triggered:
             return "market-analysis"
 
-        trigger_id = ctx.triggered[0]['prop_id'].split('.')[0]
+        trigger_id = callback_context.triggered[0]['prop_id'].split('.')[0]
 
         tab_mapping = {
             "nav-tab-market": "market-analysis",
