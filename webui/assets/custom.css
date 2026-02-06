@@ -2553,3 +2553,79 @@ body.theme-bw .watchlist-action-btn {
 body.theme-bw .watchlist-action-btn:hover {
     color: #3B82F6;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   UX ENHANCEMENTS - Settings Summary, Agent Summary, Toast
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Active Settings Summary Row */
+.active-settings-row {
+    padding: 6px 10px;
+    background: rgba(59, 130, 246, 0.08);
+    border-radius: 6px;
+    border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+.active-settings-row .badge {
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 4px 8px;
+}
+
+/* Agent Quick Summary Container */
+.agent-quick-summary-container {
+    min-height: 40px;
+}
+
+.agent-summary-content {
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.agent-summary-content i {
+    font-size: 0.75rem;
+    width: 16px;
+}
+
+/* Toast Notification Styling */
+#analysis-toast {
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+}
+
+#analysis-toast .toast-header {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+#analysis-toast .toast-body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* Light theme adjustments */
+body.theme-bw .active-settings-row {
+    background: rgba(59, 130, 246, 0.05);
+    border-color: rgba(59, 130, 246, 0.2);
+}
+
+body.theme-bw .agent-summary-content {
+    background: rgba(59, 130, 246, 0.05) !important;
+    border-color: rgba(59, 130, 246, 0.15) !important;
+}
+
+body.theme-bw #analysis-toast {
+    border-color: #CBD5E1;
+}
+
+body.theme-bw #analysis-toast .toast-header {
+    background: #F8FAFC;
+    color: #1E293B;
+    border-bottom-color: #E2E8F0;
+}
+
+body.theme-bw #analysis-toast .toast-body {
+    background: #FFFFFF;
+    color: #1E293B;
+}

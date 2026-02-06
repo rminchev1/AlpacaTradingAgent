@@ -25,6 +25,19 @@ def create_trading_control_panel():
             ], size="lg", className="mb-3"),
         ]),
 
+        # Active Settings Summary (inline display)
+        html.Div(
+            id="active-settings-summary",
+            children=[
+                html.Div([
+                    dbc.Badge("Shallow", color="info", className="me-1", id="depth-badge"),
+                    dbc.Badge("5 Analysts", color="secondary", className="me-1", id="analysts-badge"),
+                    dbc.Badge("Long Only", color="success", className="me-1", id="mode-badge"),
+                ], className="d-flex flex-wrap gap-1")
+            ],
+            className="mb-2 active-settings-row"
+        ),
+
         # Quick Actions Row
         dbc.Row([
             dbc.Col([

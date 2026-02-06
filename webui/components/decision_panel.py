@@ -31,6 +31,19 @@ def create_compact_decision_panel():
         # Prominent Signal Card
         create_signal_card(),
 
+        # Quick Agent Summary (brief 2-3 line insights)
+        html.Div([
+            html.Div(
+                id="agent-quick-summary",
+                children=[
+                    html.Div(
+                        "Agent insights will appear here after analysis",
+                        className="text-muted small text-center py-2"
+                    )
+                ]
+            )
+        ], className="agent-quick-summary-container mb-3"),
+
         # Compact decision details (scrollable)
         html.Div([
             html.H6([

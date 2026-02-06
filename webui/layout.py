@@ -272,6 +272,20 @@ def create_main_layout():
         # Header
         header,
 
+        # Toast Notification for Analysis Completion
+        html.Div(
+            dbc.Toast(
+                id="analysis-toast",
+                header="Analysis Complete",
+                icon="success",
+                is_open=False,
+                dismissable=True,
+                duration=5000,
+                style={"position": "fixed", "top": 66, "right": 10, "width": 350, "zIndex": 1050},
+            ),
+            id="toast-container"
+        ),
+
         # Account Summary Bar
         account_bar,
 
