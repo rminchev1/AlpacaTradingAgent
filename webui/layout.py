@@ -275,9 +275,9 @@ def create_main_layout():
         # Account Summary Bar
         account_bar,
 
-        # Market Scanner & Watchlist (top for quick access)
-        scanner_section,
+        # Watchlist & Market Scanner (top for quick access)
         watchlist_section,
+        scanner_section,
 
         # Main Trading Area (Chart + Controls)
         main_trading_row,
