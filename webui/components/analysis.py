@@ -127,7 +127,7 @@ def run_analysis(ticker, selected_analysts, research_depth, allow_shorts, quick_
         config["max_debate_rounds"] = research_depth
         config["max_risk_discuss_rounds"] = research_depth
         config["allow_shorts"] = allow_shorts
-        config["parallel_analysts"] = True  # Enable parallel analyst execution
+        config["parallel_analysts"] = False  # Sequential analysts for proper report updates (tickers still run in parallel)
         config["quick_think_llm"] = quick_llm
         config["deep_think_llm"] = deep_llm
         
