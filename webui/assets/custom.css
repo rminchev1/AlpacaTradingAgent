@@ -1888,3 +1888,183 @@ body {
 .decision-details-scroll::-webkit-scrollbar-thumb:hover {
     background: #64748B;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   REPORTS PANEL - ORGANIZED NAVIGATION
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Reports panel body */
+.reports-panel-body {
+    padding: 1rem;
+}
+
+/* Navigation section container */
+.reports-nav-section {
+    margin-bottom: 1rem;
+}
+
+/* Symbol navigation row */
+.symbol-nav-row {
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%);
+    border-radius: 8px;
+    border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+/* Current symbol badge */
+.current-symbol-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+    border-radius: 6px;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Navigation groups container */
+.nav-groups-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+    margin-bottom: 1rem;
+}
+
+/* Individual navigation group */
+.nav-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    background: rgba(15, 23, 42, 0.5);
+    border-radius: 8px;
+    border: 1px solid rgba(51, 65, 85, 0.3);
+}
+
+/* Group label */
+.nav-group-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #64748B;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    padding-right: 0.5rem;
+    border-right: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+/* Pills group within nav-group */
+.nav-pills-group {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 2px;
+}
+
+/* Navigation pill styling */
+.report-nav-pill {
+    color: #94A3B8 !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 4px !important;
+    padding: 0.35rem 0.6rem !important;
+    font-size: 0.8rem !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    white-space: nowrap;
+}
+
+.report-nav-pill:hover {
+    color: #E2E8F0 !important;
+    background: rgba(59, 130, 246, 0.15) !important;
+}
+
+.report-nav-pill.active,
+.nav-pills .nav-link.active.report-nav-pill {
+    color: #FFFFFF !important;
+    background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%) !important;
+    box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Hide default tabs nav - we use custom nav above */
+.reports-tabs-hidden-nav > .nav-tabs {
+    display: none !important;
+}
+
+/* Tab content styling */
+.reports-tabs-hidden-nav .tab-content {
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+    border-radius: 8px;
+    border: 1px solid rgba(51, 65, 85, 0.3);
+    min-height: 400px;
+}
+
+.reports-tabs-hidden-nav .tab-pane {
+    padding: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .nav-groups-container {
+        gap: 0.75rem;
+    }
+
+    .nav-group {
+        padding: 0.25rem 0.5rem;
+    }
+
+    .report-nav-pill {
+        padding: 0.3rem 0.5rem !important;
+        font-size: 0.75rem !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .nav-groups-container {
+        justify-content: center;
+    }
+
+    .nav-group-label {
+        display: none;
+    }
+
+    .nav-group {
+        border: none;
+        background: transparent;
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .symbol-nav-row {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .symbol-nav-row > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: none !important;
+    }
+
+    .symbol-nav-row .text-end {
+        text-align: center !important;
+    }
+
+    .nav-groups-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .nav-group {
+        justify-content: center;
+    }
+
+    .nav-pills-group {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

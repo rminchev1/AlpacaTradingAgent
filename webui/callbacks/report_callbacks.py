@@ -819,41 +819,77 @@ def register_report_callbacks(app):
 
     @app.callback(
         Output("tabs", "active_tab"),
-        [Input("nav-market", "n_clicks"),
-         Input("nav-social", "n_clicks"),
-         Input("nav-news", "n_clicks"),
-         Input("nav-fundamentals", "n_clicks"),
-         Input("nav-researcher", "n_clicks"),
-         Input("nav-research-mgr", "n_clicks"),
-         Input("nav-trader", "n_clicks"),
-         Input("nav-risk-agg", "n_clicks"),
-         Input("nav-risk-cons", "n_clicks"),
-         Input("nav-risk-neut", "n_clicks"),
-         Input("nav-final", "n_clicks")]
+        [Input("nav-tab-market", "n_clicks"),
+         Input("nav-tab-social", "n_clicks"),
+         Input("nav-tab-news", "n_clicks"),
+         Input("nav-tab-fundamentals", "n_clicks"),
+         Input("nav-tab-macro", "n_clicks"),
+         Input("nav-tab-researcher", "n_clicks"),
+         Input("nav-tab-research-mgr", "n_clicks"),
+         Input("nav-tab-trader", "n_clicks"),
+         Input("nav-tab-risk", "n_clicks"),
+         Input("nav-tab-final", "n_clicks")]
     )
     def switch_tab(*args):
         """Switch between tabs based on navigation clicks"""
         ctx = dash.callback_context
         if not ctx.triggered:
             return "market-analysis"
-        
+
         trigger_id = ctx.triggered[0]['prop_id'].split('.')[0]
-        
+
         tab_mapping = {
-            "nav-market": "market-analysis",
-            "nav-social": "social-sentiment", 
-            "nav-news": "news-analysis",
-            "nav-fundamentals": "fundamentals-analysis",
-            "nav-researcher": "researcher-debate",
-            "nav-research-mgr": "research-manager",
-            "nav-trader": "trader-plan",
-            "nav-risk-agg": "risk-debate",
-            "nav-risk-cons": "risk-debate", 
-            "nav-risk-neut": "risk-debate",
-            "nav-final": "final-decision"
+            "nav-tab-market": "market-analysis",
+            "nav-tab-social": "social-sentiment",
+            "nav-tab-news": "news-analysis",
+            "nav-tab-fundamentals": "fundamentals-analysis",
+            "nav-tab-macro": "macro-analysis",
+            "nav-tab-researcher": "researcher-debate",
+            "nav-tab-research-mgr": "research-manager",
+            "nav-tab-trader": "trader-plan",
+            "nav-tab-risk": "risk-debate",
+            "nav-tab-final": "final-decision"
         }
-        
+
         return tab_mapping.get(trigger_id, "market-analysis")
+
+    @app.callback(
+        [Output("nav-tab-market", "active"),
+         Output("nav-tab-social", "active"),
+         Output("nav-tab-news", "active"),
+         Output("nav-tab-fundamentals", "active"),
+         Output("nav-tab-macro", "active"),
+         Output("nav-tab-researcher", "active"),
+         Output("nav-tab-research-mgr", "active"),
+         Output("nav-tab-trader", "active"),
+         Output("nav-tab-risk", "active"),
+         Output("nav-tab-final", "active")],
+        [Input("tabs", "active_tab")]
+    )
+    def update_nav_active_state(active_tab):
+        """Update navigation pill active states based on current tab"""
+        # Map tabs to nav indices
+        tab_to_index = {
+            "market-analysis": 0,
+            "social-sentiment": 1,
+            "news-analysis": 2,
+            "fundamentals-analysis": 3,
+            "macro-analysis": 4,
+            "researcher-debate": 5,
+            "research-manager": 6,
+            "trader-plan": 7,
+            "risk-debate": 8,
+            "final-decision": 9
+        }
+
+        # Create list of active states (all False initially)
+        active_states = [False] * 10
+
+        # Set the active tab's nav to True
+        if active_tab in tab_to_index:
+            active_states[tab_to_index[active_tab]] = True
+
+        return tuple(active_states)
 
     # Prompt Modal Callbacks
     @app.callback(

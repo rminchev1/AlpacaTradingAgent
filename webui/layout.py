@@ -188,7 +188,7 @@ def create_main_layout():
         "reports-panel",
         "Agent Reports & Analysis",
         "📋",
-        reports_content.children if hasattr(reports_content, 'children') else reports_content,
+        reports_content,  # Already returns CardBody with proper content
         default_open=False
     )
 
