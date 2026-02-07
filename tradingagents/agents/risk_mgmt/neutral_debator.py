@@ -25,7 +25,8 @@ def create_neutral_debator(llm, config=None):
         news_report = state["news_report"]
         fundamentals_report = state["fundamentals_report"]
         macro_report = state["macro_report"]
-        
+        options_report = state.get("options_report", "")
+
         trader_decision = state["trader_investment_plan"]
         
         # Get trading mode from config
@@ -63,6 +64,7 @@ Market Research Report: {market_research_report}
 Social Media Sentiment Report: {sentiment_report}
 Latest World Affairs Report: {news_report}
 Company Fundamentals Report: {fundamentals_report}
+Options Market Positioning Report: {options_report}
 
 Here is the current conversation history: {history} 
 Here is the last response from the risky analyst: {current_risky_response} 
